@@ -7,7 +7,7 @@ database.loadDatabase();
 
 const app = express();
 const port = process.env.PORT || 4242; //get the port number from webhosting server or 4242
-app.listen(4242, ()=>{console.log(` >> listening at port:${port}...`)});
+app.listen(port, ()=>{console.log(` >> listening at port:${port}...`)});
 //create public(static) files
 app.use(express.static("public"));
 app.use(express.json({limit: "10mb"}));//our server will accept json
