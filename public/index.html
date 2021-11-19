@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <title>Social Media Test</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="user-information">
+            <div class="site-logo-container">
+                <div class="site-logo"><span class="site-logo-span">Ass</span>book</div>
+            </div>
+            <div class="edit-user-post">
+                <label class="edit-user-picture-label" for="upload-user-picture">
+                    <img src="" id="edit-user-picture" onError="checkState(this,200,200)">
+                </label>
+                <input type="text" id="edit-user-name" placeholder="Whats your username?">
+                <textarea id="edit-user-post-text" cols="30" rows="4" placeholder="What do you have in your mind?"></textarea>
+                <label class="edit-user-post-picture-label" for="upload-user-post-picture">
+                    <img src="" id="edit-user-post-picture" onError="checkState(this,400,400)">
+                </label>
+
+                <!--invisible input boxes which can be accessed by clicking labels (images)-->
+                <input type="file"  accept="image/*" name="image-user-picture" id="upload-user-picture" onchange="uploadImage(event,'edit-user-picture')" style="display: none;">
+                <input type="file"  accept="image/*" name="image-user-post-picture" id="upload-user-post-picture" onchange="uploadImage(event,'edit-user-post-picture')" style="display: none;">
+            </div>
+            <div class="user-information-buttons">
+                <button id="randomize-user-post">randomize the user post</button>
+                <button id="publish">Publish Your Post</button>
+                <div id="post-upload-status">Click your profile picture and post picture to upload new</div>
+            </div>
+        </div>
+        <div class="user-posts">
+            <div id="user-posts-container" >
+
+            </div>
+            <button id="load-more-posts">Load More Posts</button>
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+</html>
