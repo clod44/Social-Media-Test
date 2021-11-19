@@ -26,13 +26,13 @@ function uploadImage(event, img_id){
     document.getElementById(img_id).src = URL.createObjectURL(event.target.files[0]);
 }
 
-
 const uploadUserPic = document.getElementById("upload-user-picture");
-uploadUserPic.addEventListener("onchange",(event)=>{
+uploadUserPic.addEventListener("change",(event)=>{
+    console.log("pfp");
     uploadImage(event,"edit-user-picture");
 })
 const uploadUserPostPic = document.getElementById("upload-user-post-picture");
-uploadUserPostPic.addEventListener("onchange",(event)=>{
+uploadUserPostPic.addEventListener("change",(event)=>{
     uploadImage(event,"edit-user-post-picture");
 })
 
@@ -84,7 +84,7 @@ async function sendPost(){
             canvas.height = Math.min(img.naturalHeight,80);
         }
         const ctx = canvas.getContext("2d");
-        ctx.mozImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
         ctx.webkitImageSmoothingEnabled = false;
         ctx.msImageSmoothingEnabled = false;
         ctx.imageSmoothingEnabled = false;
