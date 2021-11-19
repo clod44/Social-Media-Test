@@ -1,14 +1,4 @@
 
-/*
-    "node-fetch" package requires "module" type to be set.
-    but we would have to use "import bla from bla" instead of "require()"
-    i like require so here is a reconstructing of it
-    ..what?? I dont even use node-fetch here
-*/
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-import fetch from "node-fetch";
-
 const express = require("express");
 const Datastore = require("nedb"); 
 const database = new Datastore("database.db");
