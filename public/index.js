@@ -27,19 +27,32 @@ function uploadImage(event, img_id){
 }
 
 
+const uploadUserPic = document.getElementById("upload-user-picture");
+uploadUserPic.addEventListener("onchange",(event)=>{
+    uploadImage(event,"edit-user-picture");
+})
+const uploadUserPostPic = document.getElementById("upload-user-post-picture");
+uploadUserPostPic.addEventListener("onchange",(event)=>{
+    uploadImage(event,"edit-user-post-picture");
+})
+
+
 const publishBtn = document.getElementById("publish");
 publishBtn.addEventListener("click",sendPost);   
 
 async function sendPost(){
     const userPicture = document.getElementById("edit-user-picture");
-    const userPicture64 = getBase64Image(userPicture);
+    const userPicture64 = getBase64Image(userPicture, "small");
     const userName = document.getElementById("edit-user-name").value;
     const userPostText = document.getElementById("edit-user-post-text").value;
     const userPostPicture = document.getElementById("edit-user-post-picture");
-    const userPostPicture64 = getBase64Image(userPostPicture);
+    const userPostPicture64 = getBase64Image(userPostPicture, "big");
     const timestamp = Date.now();
     const userLikesCount = 0;
-
+    if(userName.length < 1 || userPostText.length < 1){
+        alert("something went wrong while publishing this post");
+        return;
+    }
     const data = {userPicture64, userName, userPostText, userPostPicture64, userLikesCount, timestamp};
     const options = {
         method:  "POST",
@@ -61,13 +74,22 @@ async function sendPost(){
                             id: ${json.id}`;
     console.log(json);
 
-    function getBase64Image(img) {
+    function getBase64Image(img,size) {
         const canvas = document.createElement("canvas");
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
+        if(size=="big"){
+            canvas.width = Math.min(img.naturalWidth, 500);
+            canvas.height = Math.min(img.naturalHeight,300);
+        }else if(size=="small"){
+            canvas.width = Math.min(img.naturalWidth, 100);
+            canvas.height = Math.min(img.naturalHeight,80);
+        }
         const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        return canvas.toDataURL("image/png");
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.msImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        return canvas.toDataURL("image/png",0.5);
     }
 }
 
@@ -86,24 +108,21 @@ async function randomizeUserPost(){
 
     userName.value = data.character;
     userPostText.value = data.quote;
-    userPicture.src = getRandomImageUrl(200,200,10);
-    userPostPicture.src = getRandomImageUrl(400,400,10);
+    userPicture.src = getRandomImagePath();
+    userPostPicture.src = getRandomImagePath();
+    userPicture.naturalWidth = 100;
+    userPicture.naturalHeight = 100;
+    userPostPicture.naturalWidth = 400;
+    userPostPicture.naturalHeight = 300;
+    
+    function getRandomImagePath(){
+        const r = Math.floor(Math.random()*23);
+        return `/resources/random_images/${r}.jpg`;
+    }
 }
 
-function getRandomImageUrl(width,height){
-    const id = Math.floor(Math.random()*1000);
-    const image_url = `https://picsum.photos/id/${id}/${width}/${height}`;
-    /*
-        sometimes this url return an error. in that case we put 
-        onError=checkState(this,width,height) 
-        to post pic and pfp pic dom elements
-    */
-    return image_url;
-}
 
-function checkState(object, width, height){
-    object.src = getRandomImageUrl(width, height)
-}
+
 
 
 

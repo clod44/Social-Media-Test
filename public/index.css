@@ -99,11 +99,11 @@ button{
     display: grid;
     align-items: center;
     height: 300px;
-    grid-template: 30px 70px auto / 100px 1fr;
+    grid-template: 30px 70px auto auto auto/ 100px 1fr;
     grid-template-areas: 
     "editUserPicture editUserName"
     "editUserPicture editUserPostText"
-    "editUserPostPicture editUserPostPicture"
+    "editUserPostPicture editUserPostPicture";
 }
 
 .edit-user-picture-label{
@@ -151,6 +151,7 @@ button{
     grid-area: editUserPostPicture;
 }
 #edit-user-post-picture{
+    border: none;
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -160,10 +161,15 @@ button{
     grid-template-columns: 1fr 1fr;
     height: auto;
 }
-#post-upload-status{
+.disclaimer-box{
+    padding: 0 30px 0 30px;
     color: white;
     font-size: 10px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    display: grid;
+    grid-template-rows: 40px min-content min-content;
+    justify-items: center;
+    text-align: center;
 }
 
 

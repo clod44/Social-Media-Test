@@ -1,10 +1,9 @@
 {
   "name": "social-media-test1",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
-    "start":"node server.js"
+    "start": "node server.js"
   },
   "author": "clod44",
   "license": "MIT",
@@ -14,5 +13,15 @@
     "express": "^4.17.1",
     "nedb": "^1.8.0",
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clod44/Social-Media-Test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/clod44/Social-Media-Test/issues"
+  },
+  "homepage": "https://github.com/clod44/Social-Media-Test#readme",
+  "description": "",
+  "type":"module"
 }

@@ -1,4 +1,8 @@
 
+// These lines make "require" available
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
 const express = require("express");
 const Datastore = require("nedb"); 
 const database = new Datastore("database.db");

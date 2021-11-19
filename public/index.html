@@ -16,24 +16,29 @@
             </div>
             <div class="edit-user-post">
                 <label class="edit-user-picture-label" for="upload-user-picture">
-                    <img src="" id="edit-user-picture" onError="checkState(this,200,200)">
+                    <img src="" id="edit-user-picture">
                 </label>
                 <input type="text" id="edit-user-name" placeholder="Whats your username?">
                 <textarea id="edit-user-post-text" cols="30" rows="4" placeholder="What do you have in your mind?"></textarea>
                 <label class="edit-user-post-picture-label" for="upload-user-post-picture">
-                    <img src="" id="edit-user-post-picture" onError="checkState(this,400,400)">
+                    <img src="" id="edit-user-post-picture">
                 </label>
 
                 <!--invisible input boxes which can be accessed by clicking labels (images)-->
-                <input type="file"  accept="image/*" name="image-user-picture" id="upload-user-picture" onchange="uploadImage(event,'edit-user-picture')" style="display: none;">
-                <input type="file"  accept="image/*" name="image-user-post-picture" id="upload-user-post-picture" onchange="uploadImage(event,'edit-user-post-picture')" style="display: none;">
+                <input type="file"  accept="image/*" name="image-user-picture" id="upload-user-picture" style="display: none;">
+                <input type="file"  accept="image/*" name="image-user-post-picture" id="upload-user-post-picture" style="display: none;">
             </div>
             <div class="user-information-buttons">
                 <button id="randomize-user-post">randomize the user post</button>
                 <button id="publish">Publish Your Post</button>
-                <div id="post-upload-status">Click your profile picture and post picture to upload new
-                    . dont try to publish with the randomly generated images. it will give cross origin security error
+            </div>
+            <div class="disclaimer-box">
+                <img style="object-fit:cover; width:30px; height:30px; filter: grayscale();" src="/resources/info.png">
+                <div>
+                    Click to you profile picture or post picture to upload a new image. 
+                    Published image quality is set to very low to shorten loading times caused by slow hosting services.
                 </div>
+                <div id="post-upload-status"></div>
             </div>
         </div>
         <div class="user-posts">
